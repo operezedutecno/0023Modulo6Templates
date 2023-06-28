@@ -21,12 +21,31 @@ const itemsMenu = [
     { label: 'Contacto', url: "/contacto", active: false}
 ]
 
+const itemsGaleria = [
+    "/img/galeria/galeria1.jpg",
+    "/img/galeria/galeria2.jpg",
+    "/img/galeria/galeria3.jpg",
+    "/img/galeria/galeria1.jpg",
+    "/img/galeria/galeria2.jpg",
+    "/img/galeria/galeria3.jpg",
+    "/img/galeria/galeria1.jpg",
+    "/img/galeria/galeria2.jpg",
+    "/img/galeria/galeria3.jpg",
+    "/img/galeria/galeria1.jpg",
+    "/img/galeria/galeria2.jpg",
+    "/img/galeria/galeria3.jpg",
+    "/img/galeria/galeria1.jpg",
+    "/img/galeria/galeria2.jpg",
+    "/img/galeria/galeria3.jpg",
+]
+
 app.get("/", (req, resp) => {
     itemsMenu.map(item => {
         item.active = item.url === '/'
         return item
     })
-    resp.render("index", { itemsMenu, rutaActiva: 'Inicio' })
+    const itemsBreadcrumbs = ["Inicio"]
+    resp.render("index", { itemsMenu, itemsBreadcrumbs })
 })
 
 app.get("/galeria", (req, resp) => {
@@ -34,7 +53,8 @@ app.get("/galeria", (req, resp) => {
         item.active = item.url === '/galeria'
         return item
     })
-    resp.render("galeria", { itemsMenu, rutaActiva: 'Galería'})
+    const itemsBreadcrumbs = ["Inicio","Galería"]
+    resp.render("galeria", { itemsMenu, itemsBreadcrumbs, itemsGaleria})
 })
 
 app.get("/contacto", (req, resp) => {
@@ -42,5 +62,6 @@ app.get("/contacto", (req, resp) => {
         item.active = item.url === '/contacto'
         return item
     })
-    resp.render("contacto", {itemsMenu, rutaActiva: 'Contacto'})
+    const itemsBreadcrumbs = ["Inicio","Contacto"]
+    resp.render("contacto", {itemsMenu, itemsBreadcrumbs})
 })
